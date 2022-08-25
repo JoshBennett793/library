@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" async defer></script>
+    <link rel="icon" href="book-icon.png" />
+    <title>Library</title>
+  </head>
+  <body>
+    <header class="header">
+      <div class="header-title">
+        <p>Library</p>
+      </div>
+    </header>
+    <main class="main">
+      <div class="main-container">
+        <button type="button" id="addBookBtn" class="btn">
+          <em>+ Add Book</em>
+        </button>
+      </div>
+			<div class="card-container">
+				<div class="book-card">
+					<p class="title">"The Hobbit"</p>
+					<p class="author">JRR Tolkien</p>
+					<p class="pages">295 pages</p>
+					<button class="btn unread">Read</button>
+					<button class="btn remove">Remove</button>
+				</div>
+				<div class="book-card">
+					<p class="title">"The Hobbit"</p>
+					<p class="author">JRR Tolkien</p>
+					<p class="pages">295 pages</p>
+					<button class="unread">Read</button>
+					<button class="remove">Remove</button>
+				</div>
+				<div class="book-card">
+					<p class="title">"The Hobbit"</p>
+					<p class="author">JRR Tolkien</p>
+					<p class="pages">295 pages</p>
+					<button class="unread">Read</button>
+					<button class="remove">Remove</button>
+				</div>
+				<div class="book-card">
+					<p class="title">"The Hobbit"</p>
+					<p class="author">JRR Tolkien</p>
+					<p class="pages">295 pages</p>
+					<button class="unread">Read</button>
+					<button class="remove">Remove</button>
+				</div>
+			</div>
+      <div class="addBookModal">
+        <p>Add New Book</p>
+        <form class="addBookForm">
+          <input
+            type="text"
+            name="title"
+            id="title"
+            placeholder="Title"
+            required
+          />
+          <input
+            type="text"
+            name="author"
+            id="author"
+            placeholder="Author"
+            required
+          />
+          <input
+            type="number"
+            name="pages"
+            id="pages"
+            placeholder="Pages"
+            title="Please enter a number"
+            required
+          />
+          <label class="read-label">
+						Have you read it?
+						<input type="checkbox" name="read" id="read" />
+					</label>
+					<button type="submit" class="btn">Add</button>
+        </form>
+      </div>
+    </main>
+    <footer class="footer">
+      <p>Copyright © 2022 JoshBennett793</p>
+    </footer>
+  </body>
+</html>
