@@ -21,66 +21,37 @@
           <em>+ Add Book</em>
         </button>
       </div>
-			<div class="card-container">
-				<div class="book-card">
-					<p class="title">"The Hobbit"</p>
-					<p class="author">JRR Tolkien</p>
-					<p class="pages">295 pages</p>
-					<button class="btn unread">Read</button>
-					<button class="btn remove">Remove</button>
-				</div>
-				<div class="book-card">
-					<p class="title">"The Hobbit"</p>
-					<p class="author">JRR Tolkien</p>
-					<p class="pages">295 pages</p>
-					<button class="unread">Read</button>
-					<button class="remove">Remove</button>
-				</div>
-				<div class="book-card">
-					<p class="title">"The Hobbit"</p>
-					<p class="author">JRR Tolkien</p>
-					<p class="pages">295 pages</p>
-					<button class="unread">Read</button>
-					<button class="remove">Remove</button>
-				</div>
-				<div class="book-card">
-					<p class="title">"The Hobbit"</p>
-					<p class="author">JRR Tolkien</p>
-					<p class="pages">295 pages</p>
-					<button class="unread">Read</button>
-					<button class="remove">Remove</button>
-				</div>
-			</div>
+      <div class="card-container"></div>
       <div class="addBookModal">
         <p>Add New Book</p>
         <form class="addBookForm">
           <input
             type="text"
             name="title"
-            id="title"
+            id="title-input"
             placeholder="Title"
             required
           />
           <input
             type="text"
             name="author"
-            id="author"
+            id="author-input"
             placeholder="Author"
             required
           />
           <input
             type="number"
             name="pages"
-            id="pages"
+            id="pages-input"
             placeholder="Pages"
             title="Please enter a number"
             required
           />
           <label class="read-label">
-						Have you read it?
-						<input type="checkbox" name="read" id="read" />
-					</label>
-					<button type="submit" class="btn">Add</button>
+            Have you read it?
+            <input type="checkbox" name="read" id="read-input" />
+          </label>
+          <button type="submit" class="btn">Add</button>
         </form>
       </div>
     </main>
