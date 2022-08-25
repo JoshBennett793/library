@@ -1,6 +1,7 @@
 :root {
   --white: #eeeded;
-  --grey: #e9e9e9;
+  --light-grey: #e9e9e9;
+	--grey: #c1c0c0;
   --dark-grey: #d6d6d6;
   --green: #6cb46c;
   --red: #dd7c7c;
@@ -41,7 +42,7 @@ body {
   font-size: var(--font-size-lg);
   height: 100vh;
   width: 100vw;
-  background-color: var(--grey);
+  background-color: var(--light-grey);
   display: grid;
   grid-template-rows: 100px 1fr 2rem;
 }
@@ -214,26 +215,6 @@ form button {
   background-color: var(--red);
 }
 
-function postBookToDOM(book) {
-	myLibrary.forEach(({title, author, pages, read}) => {
-		document.body.insertBefore(cardContainer, addBookModal);
-		
-	}
-	)}
-
-	// function userInput() {
-//   let title = window.prompt("Title: ");
-//   let author = window.prompt("Author: ");
-//   let pages = window.prompt("Pages: ");
-//   let read = window.prompt("Read: ");
-// 	if (title && author && pages && read !== "") {
-// 		const newBook = Object.create(book).init(
-// 			this.title = title,
-// 			this.author = author,
-// 			this.pages = pages,
-// 			this.read = read)
-// 		addBookToLibrary(newBook);
-// 	}
-// }
-
-// /* userInput(); */
+.book-card button.remove {
+	background-color: var(--grey);
+}
