@@ -4,14 +4,20 @@ let modalDiv = document.createElement("div");
 const addBookBtn = document.querySelector("#addBookBtn");
 const addBookModal = document.querySelector(".addBookModal");
 const cardContainer = document.querySelector(".card-container");
+const cardContainerChildren = document.querySelector(".card-container").childNodes;
+const titleInput = document.querySelector("#title");
+const authorInput = document.querySelector("#author");
+const pagesInput = document.querySelector("#pages");
+const readCheckbox = document.querySelector("#read");
+const submitBtn = document.querySelector(".submit");
 
 function toggleModal() {
-  if (addBookModal.style.visibility == "hidden") {
+	if (addBookModal.style.visibility == "hidden") {
     addBookModal.style.visibility = "visible";
     modalDiv.classList.add("modal-body-overlay");
     document.body.appendChild(modalDiv);
   } else {
-    addBookModal.style.visibility = "hidden";
+		addBookModal.style.visibility = "hidden";
     modalDiv.remove();
   }
 }
@@ -21,23 +27,23 @@ modalDiv.addEventListener("click", toggleModal);
 
 const book = {
   init: function (title, author, pages, read) {
-    this.title = title;
+		this.title = title;
     this.author = author;
     this.pages = pages;
     this.read = read;
     return this;
   },
   info: function () {
-    return `${this.title} by ${this.author}, ${this.pages} pages, ${this.read}`;
+		return `${this.title} by ${this.author}, ${this.pages} pages, ${this.read}`;
   },
 };
 
 function addBookToLibrary(book) {
-  myLibrary.unshift(book);
+	myLibrary.push(book);
 }
 
 function createCard(book) {
-  createCard.prototype = Object.create(book);
+	createCard.prototype = Object.create(book);
   const bookCard = document.createElement("div");
   bookCard.classList.add("book-card");
   cardContainer.appendChild(bookCard);
@@ -54,12 +60,12 @@ function createCard(book) {
   pagesP.innerText = `${book.pages} pages`;
   bookCard.appendChild(pagesP);
   if (book.read === true) {
-    const readBtn = document.createElement("button");
+		const readBtn = document.createElement("button");
     readBtn.classList.add("btn", "read");
     readBtn.innerText = "Read";
     bookCard.appendChild(readBtn);
   } else if (book.read === false) {
-    const readBtn = document.createElement("button");
+		const readBtn = document.createElement("button");
     readBtn.classList.add("btn", "unread");
     readBtn.innerText = "Unread";
     bookCard.appendChild(readBtn);
@@ -70,25 +76,34 @@ function createCard(book) {
   bookCard.appendChild(removeBtn);
 }
 
-function postBookToDOM() {
+function postBooksToDOM() {
+	cardContainerChildren.forEach(card => card.remove());
   myLibrary.forEach(createCard);
 }
 
-const theHobbit = Object.create(book).init(
-  "The Hobbit",
-  "J.R.R. Tolkien",
-  295,
-  true
-);
-myLibrary.push(theHobbit);
+function emptyModal() {
+	titleInput.value = "";
+	authorInput.value = "";
+	pagesInput.value = "";
+	readCheckbox.checked = false;
+}
 
-
-const bushCraft = Object.create(book).init(
-  "Bush Craft",
-  "Bob Holtzman",
-  256,
-  false
-);
-myLibrary.push(bushCraft);
-
-postBookToDOM();
+submitBtn.addEventListener("click", () => {
+	if (readCheckbox.checked) {
+		read = true;
+	} else {
+		read = false;
+	}
+	const newBook = Object.create(book).init(
+		titleInput.value,
+		authorInput.value,
+		pagesInput.value,
+		read
+		);
+		emptyModal();
+		toggleModal();
+		addBookToLibrary(newBook);
+		postBooksToDOM();
+		console.log(cardContainerChildren);
+	});
+	
