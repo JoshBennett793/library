@@ -213,3 +213,27 @@ form button {
 .book-card button.unread {
   background-color: var(--red);
 }
+
+function postBookToDOM(book) {
+	myLibrary.forEach(({title, author, pages, read}) => {
+		document.body.insertBefore(cardContainer, addBookModal);
+		
+	}
+	)}
+
+	// function userInput() {
+//   let title = window.prompt("Title: ");
+//   let author = window.prompt("Author: ");
+//   let pages = window.prompt("Pages: ");
+//   let read = window.prompt("Read: ");
+// 	if (title && author && pages && read !== "") {
+// 		const newBook = Object.create(book).init(
+// 			this.title = title,
+// 			this.author = author,
+// 			this.pages = pages,
+// 			this.read = read)
+// 		addBookToLibrary(newBook);
+// 	}
+// }
+
+// /* userInput(); */
