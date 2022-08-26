@@ -157,7 +157,7 @@ input {
   height: 35px;
   border: none;
   border-radius: var(--border-radius);
-  font-size: var(--font-size-xs);
+  font-size: var(--font-size-xxs);
 }
 
 form button {
@@ -196,6 +196,7 @@ form button {
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
+	text-align: center;
 	
   border-radius: var(--border-radius);
   background-color: var(--dark-grey);
