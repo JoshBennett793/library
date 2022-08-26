@@ -4,13 +4,22 @@ let modalDiv = document.createElement("div");
 const addBookBtn = document.querySelector("#addBookBtn");
 const addBookModal = document.querySelector(".addBookModal");
 const cardContainer = document.querySelector(".card-container");
-const cardContainerChildren =
-  document.querySelector(".card-container").childNodes;
+const addBookForm = document.querySelector(".addBookForm");
 const titleInput = document.querySelector("#title");
 const authorInput = document.querySelector("#author");
 const pagesInput = document.querySelector("#pages");
 const readCheckbox = document.querySelector("#read");
 const submitBtn = document.querySelector(".submit");
+
+const book = {
+	init: function (title, author, pages, read) {
+		this.title = title;
+		this.author = author;
+		this.pages = pages;
+		this.read = read;
+		return this;
+	},
+};
 
 function toggleModal() {
   if (addBookModal.style.visibility == "hidden") {
@@ -24,24 +33,11 @@ function toggleModal() {
 }
 
 function emptyModal() {
-  titleInput.value = "";
-  authorInput.value = "";
-  pagesInput.value = "";
-  readCheckbox.checked = false;
+  addBookForm.reset();
 }
 
 addBookBtn.addEventListener("click", toggleModal);
 modalDiv.addEventListener("click", toggleModal);
-
-const book = {
-  init: function (title, author, pages, read) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.read = read;
-    return this;
-  },
-};
 
 function createCard(book) {
   const bookCard = document.createElement("div");
