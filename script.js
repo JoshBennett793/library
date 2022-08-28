@@ -12,14 +12,18 @@ const readCheckbox = document.querySelector("#read");
 const submitBtn = document.querySelector(".submit");
 
 const book = {
-	init: function (title, author, pages, read) {
-		this.title = title;
-		this.author = author;
-		this.pages = pages;
-		this.read = read;
-		return this;
-	},
+  init: function (title, author, pages, read) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.read = read;
+    return this;
+  },
 };
+
+function emptyModal() {
+  addBookForm.reset();
+}
 
 function toggleModal() {
   if (addBookModal.style.visibility == "hidden") {
@@ -32,48 +36,43 @@ function toggleModal() {
   }
 }
 
-function emptyModal() {
-  addBookForm.reset();
-}
-
 addBookBtn.addEventListener("click", toggleModal);
 modalDiv.addEventListener("click", toggleModal);
 
 function createCard(book) {
   const bookCard = document.createElement("div");
-  bookCard.classList.add("book-card");
-  cardContainer.appendChild(bookCard);
   const titleP = document.createElement("p");
-  titleP.classList.add("title");
-  titleP.innerText = `"${book.title}"`;
-  bookCard.appendChild(titleP);
   const authorP = document.createElement("p");
-  authorP.classList.add("author");
-  authorP.innerText = book.author;
-  bookCard.appendChild(authorP);
   const pagesP = document.createElement("p");
+  const readBtn = document.createElement("button");
+  const removeBtn = document.createElement("button");
+
+  bookCard.classList.add("book-card");
+  titleP.classList.add("title");
+  authorP.classList.add("author");
   pagesP.classList.add("pages");
+  removeBtn.classList.add("btn", "remove");
+
+  titleP.innerText = `"${book.title}"`;
+  authorP.innerText = book.author;
   pagesP.innerText = `${book.pages} pages`;
-  bookCard.appendChild(pagesP);
+  removeBtn.innerText = "Remove";
+
   if (book.read === true) {
-    const readBtn = document.createElement("button");
     readBtn.classList.add("btn", "read", "read-btn");
     readBtn.innerText = "Read";
-    bookCard.appendChild(readBtn);
   } else if (book.read === false) {
-    const readBtn = document.createElement("button");
     readBtn.classList.add("btn", "unread", "read-btn");
     readBtn.innerText = "Unread";
-    bookCard.appendChild(readBtn);
   }
 
-  const removeBtn = document.createElement("button");
-  removeBtn.classList.add("btn", "remove");
-  removeBtn.innerText = "Remove";
+  bookCard.appendChild(titleP);
+  bookCard.appendChild(authorP);
+  bookCard.appendChild(pagesP);
+  bookCard.appendChild(readBtn);
   bookCard.appendChild(removeBtn);
+  cardContainer.appendChild(bookCard);
 }
-
-cardContainer.addEventListener("click", removeCard);
 
 function removeCard(event) {
   let element = event.target;
@@ -88,7 +87,7 @@ function removeCard(event) {
   }
 }
 
-cardContainer.addEventListener("click", changeReadStatus);
+cardContainer.addEventListener("click", removeCard);
 
 function changeReadStatus(event) {
   let element = event.target;
@@ -106,6 +105,8 @@ function changeReadStatus(event) {
     }
   }
 }
+
+cardContainer.addEventListener("click", changeReadStatus);
 
 function addBookToLibrary(book) {
   myLibrary.push(book);
