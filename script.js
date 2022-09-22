@@ -11,15 +11,58 @@ const pagesInput = document.querySelector("#pages");
 const readCheckbox = document.querySelector("#read");
 const submitBtn = document.querySelector(".submit");
 
-const book = {
-  init: function (title, author, pages, read) {
+class Book {
+  constructor(title, author, pages, read) {
     this.title = title;
     this.author = author;
     this.pages = pages;
     this.read = read;
-    return this;
-  },
-};
+  }
+
+  get title() {
+    return this._title;
+  }
+
+  set title(value) {
+    if (value === undefined) {
+      alert("Please specify a title");
+      return;
+    }
+    this._title = value;
+  }
+
+  get author() {
+    return this._author;
+  }
+
+  set author(value) {
+    if (value === undefined) {
+      alert("Please specify an author");
+      return;
+    }
+    this._author = value;
+  }
+
+	get pages() {
+		return this._pages;
+	}
+
+	set pages(value) {
+		if (pages === undefined) {
+			alert("Please specify number of pages");
+			return;
+		}
+		this._pages = value;
+	}
+
+	get read() {
+		return this._read;
+	}
+	
+	set read(value) {
+		this._read = value;
+	}
+}
 
 function emptyModal() {
   addBookForm.reset();
@@ -45,18 +88,23 @@ function createCard(book) {
   const authorP = document.createElement("p");
   const pagesP = document.createElement("p");
   const readBtn = document.createElement("button");
+	const cardBottomContainer = document.createElement("div");
   const removeBtn = document.createElement("button");
+	const editBtn = document.createElement("img");
 
   bookCard.classList.add("book-card");
   titleP.classList.add("title");
   authorP.classList.add("author");
   pagesP.classList.add("pages");
   removeBtn.classList.add("btn", "remove");
+	editBtn.classList.add("edit");
+	editBtn.title = "Edit";
 
   titleP.innerText = `"${book.title}"`;
   authorP.innerText = book.author;
   pagesP.innerText = `${book.pages} pages`;
   removeBtn.innerText = "Remove";
+	editBtn.src = "square-edit-outline.svg"
 
   if (book.read === true) {
     readBtn.classList.add("btn", "read", "read-btn");
@@ -70,7 +118,9 @@ function createCard(book) {
   bookCard.appendChild(authorP);
   bookCard.appendChild(pagesP);
   bookCard.appendChild(readBtn);
-  bookCard.appendChild(removeBtn);
+	bookCard.appendChild(cardBottomContainer);
+  cardBottomContainer.appendChild(removeBtn);
+	cardBottomContainer.appendChild(editBtn);
   cardContainer.appendChild(bookCard);
 }
 
@@ -133,7 +183,7 @@ submitBtn.addEventListener("click", () => {
   } else {
     read = false;
   }
-  const newBook = Object.create(book).init(
+  const newBook = new Book(
     titleInput.value,
     authorInput.value,
     pagesInput.value,
