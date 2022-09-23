@@ -11,15 +11,14 @@ const pagesInput = document.querySelector("#pages");
 const readCheckbox = document.querySelector("#read");
 const submitBtn = document.querySelector(".submit");
 
-const book = {
-  init: function (title, author, pages, read) {
+class Book {
+  constructor(title, author, pages, read) {
     this.title = title;
     this.author = author;
     this.pages = pages;
     this.read = read;
-    return this;
-  },
-};
+  }
+}
 
 function emptyModal() {
   addBookForm.reset();
@@ -133,7 +132,7 @@ submitBtn.addEventListener("click", () => {
   } else {
     read = false;
   }
-  const newBook = Object.create(book).init(
+  const newBook = new Book(
     titleInput.value,
     authorInput.value,
     pagesInput.value,
